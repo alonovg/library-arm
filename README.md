@@ -53,6 +53,10 @@ Default pip:
 ```python
 pip install -r requirements.txt
 ```
+Make migration:
+```python
+alembic upgrade head
+```
 For run:
 ```python
 uvicorn app.main:app
