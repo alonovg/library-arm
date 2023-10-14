@@ -1,0 +1,92 @@
+[
+  {
+    "title": "Марсианин",
+    "author_id": 1,
+    "availability": false,
+    "genre_id": 1
+  },
+  {
+    "title": "Убийство в Восточном экспрессе",
+    "author_id": 2,
+    "availability": false,
+    "genre_id": 2
+  },
+  {
+    "title": "Тень ветра",
+    "author_id": 3,
+    "availability": true,
+    "genre_id": 2
+  },
+  {
+    "title": "Гордость и предубеждение",
+    "author_id": 4,
+    "availability": true,
+    "genre_id": 3
+  },
+  {
+    "title": "Тартюф",
+    "author_id": 5,
+    "availability": false,
+    "genre_id": 4
+  },
+  {
+    "title": "Три товарища",
+    "author_id": 6,
+    "availability": false,
+    "genre_id": 4
+  },
+  {
+    "title": "Так говорил Заратустра",
+    "author_id": 7,
+    "availability": false,
+    "genre_id": 5
+  },
+  {
+    "title": "Размышления",
+    "author_id": 8,
+    "availability": true,
+    "genre_id": 5
+  },
+  {
+    "title": "Игры, в которые играют люди",
+    "author_id": 9,
+    "availability": true,
+    "genre_id": 6
+  },
+  {
+    "title": "Воля к власти",
+    "author_id": 7,
+    "availability": false,
+    "genre_id": 5
+  },
+  {
+    "title": "Экклесиа гоминис",
+    "author_id": 7,
+    "availability": true,
+    "genre_id": 5
+  },
+  {
+    "title": "Сумерки идолов",
+    "author_id": 7,
+    "availability": false,
+    "genre_id": 5
+  },
+  {
+    "title": "Ориент Экспресс",
+    "author_id": 2,
+    "availability": false,
+    "genre_id": 2
+  },
+  {
+    "title": "Смерть на Ниле",
+    "author_id": 2,
+    "availability": true,
+    "genre_id": 2
+  },
+  {
+    "title": "Загадка желтых ирисов",
+    "author_id": 2,
+    "availability": false,
+    "genre_id": 2
+  }
+]

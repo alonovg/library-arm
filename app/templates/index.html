@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='css/style.css')  }}">
+
+    <title>Document</title>
+</head>
+<body>
+<h1 class="text-center text-muted">Библиотека</h1>
+<div class="tab-content">
+    <a href="/docs#/Книги/look_for_book_books_find__book_id__get" class="btn btn-sm btn-primary mt-3 rounded-pill">Узнать местоположение книги</a>
+    <a href="/docs#/Книги/get_mvp_book_books_mvp_book_get" class="btn btn-sm btn-primary mt-3 rounded-pill">Самая читаемая книга</a>
+    <a href="/docs#/Авторы%20книг/get_mvp_author_authorsmvp_author_get" class="btn btn-sm btn-primary mt-3 rounded-pill">Самый читаемый автор</a>
+    <a href="/docs#/Движения%20книг/get_report_about_transactions_books_transactions_report_get" class="btn btn-sm btn-primary mt-3 rounded-pill">Получение записей, просроченных возврат книги</a>
+</div>
+<div class="tab-content" id="tabContent">
+    <div class="tab-pane tab-pane-garage fade active show" id="nav-cars" role="tabpanel"
+         aria-labelledby="#link-nav-cars">
+        <a href="/docs#/Читатели/add_customer_customers_post" class="btn btn-sm btn-success mt-3 rounded-pill">Добавить читателя</a>
+        <a href="/docs#/Читатели/update_customer_customers__customer_id__patch" class="btn btn-sm btn-warning mt-3 rounded-pill">Изменить читателя</a>
+        <a href="/docs#/Читатели/delete_customer_customers__customer_id__delete" class="btn btn-sm btn-danger mt-3 rounded-pill">Удалить читателя</a>
+        <h5 class="text-center my-1">Читатели ({{customers_count}})</h5>
+        <div class="border border-2 rounded-2 p-1 my-2" style="height: 260px; overflow: auto">
+            <table class="table table-white">
+                <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">customer_full_name</th>
+                    <th scope="col">date_of_birth</th>
+                    <th scope="col">address</th>
+                    <th scope="col">phone_number</th>
+                    <th scope="col">Всего книг взято за все время</th>
+                    <th scope="col">Книг "на руках"</th>
+                    <th scope="col">Дата последнего посещения библиотеки</th>
+                    <th scope="col">Любимый жанр</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for customer in customers %}
+                <tr>
+                    <th scope="row">{{customer.id}}</th>
+                    <td>{{customer.customer_full_name}}</td>
+                    <td>{{customer.date_of_birth}}</td>
+                    <td>{{customer.address}}</td>
+                    <td>{{customer.phone_number}}</td>
+                    <td>{{customer_count[customer.id]}}</td>
+                    <td>{{customer_books_atm[customer.id]}}</td>
+                    <td>{{last_visit[customer.id]}}</td>
+                    <td>{{customer_mvp_genres[customer.id].genre_name}}, ID: {{customer_mvp_genres[customer.id].id}}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <a href="/docs#/Книги/add_book_books_post" class="btn btn-sm btn-success mt-3 rounded-pill">Добавить книгу</a>
+        <a href="/docs#/Книги/update_book_books__book_id__patch" class="btn btn-sm btn-warning mt-3 rounded-pill">Изменить книгу</a>
+        <a href="/docs#/Книги/delete_book_books__book_id__delete" class="btn btn-sm btn-danger mt-3 rounded-pill">Удалить книгу</a>
+        <h5 class="text-center my-1">Книги ({{books_count}})</h5>
+        <h6>Самая читаемая книга: <b>{{mvp_book.title}}</b>, Автор: <b>{{mvp_book.author_id}}</b>, Жанр: <b>{{mvp_book.genre_id}}</b></h6>
+        <h6><b>Самый читаемый автор: {{mvp_author}}</b></h6>
+        <div class="border border-2 rounded-2 p-1 my-2" style="height: 260px; overflow: auto">
+            <table class="table table-white">
+                <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">title</th>
+                    <th scope="col">author_id</th>
+                    <th scope="col">availability</th>
+                    <th scope="col">genre_id</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for book in books %}
+                <tr>
+                    <th scope="row">{{book.id}}</th>
+                    <td>{{book.title}}</td>
+                    <td>{{book.author.author_full_name}}, ID: {{book.author.id}}</td>
+                    <td>{{book.availability}}</td>
+                    <td>{{book.genre.genre_name}}, ID: {{book.genre.id}}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <a href="/docs#/Движения%20книг/add_transaction_books_transactions_post" class="btn btn-sm btn-success mt-3 rounded-pill">Добавить операцию (Пользователь взял книгу)</a>
+        <a href="/docs#/Движения%20книг/update_transaction_by_id_books_transactions__transaction_id__patch"
+           class="btn btn-sm btn-warning mt-3 rounded-pill">Изменить операцию (Пользователь вернул книгу) по ID операции</a>
+        <a href="/docs#/Движения%20книг/update_transaction_by_customer_book_id_books_transactions_patch"
+           class="btn btn-sm btn-warning mt-3 rounded-pill">Изменить операцию (Пользователь вернул книгу) по ID пользователя и ID книги</a>
+        <a href="/docs#/Движения%20книг/transaction_delete_books_transactions__transaction_id__delete" class="btn btn-sm btn-danger mt-3 rounded-pill">Удалить операцию</a>
+        <h5 class="text-center my-1">Операции по книгам</h5>
+        <div class="border border-2 rounded-2 p-1 my-2" style="height: 260px; overflow: auto">
+            <table class="table table-white">
+                <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">book_id</th>
+                    <th scope="col">customer_id</th>
+                    <th scope="col">transaction_date</th>
+                    <th scope="col">expected_return_date</th>
+                    <th scope="col">returned_date</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for book_transaction in book_transactions %}
+                <tr>
+                    <th scope="row">{{book_transaction.id}}</th>
+                    <td>{{book_transaction.book.title}}, ID: {{book_transaction.book.id}}</td>
+                    <td>{{book_transaction.customer.customer_full_name}} ID: {{book_transaction.customer.id}}</td>
+                    <td>{{book_transaction.transaction_date}}</td>
+                    <td>{{book_transaction.expected_return_date}}</td>
+                    <td>{{book_transaction.returned_date}}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <a href="/docs#/Авторы%20книг/add_author_authors_post" class="btn btn-sm btn-success mt-3 rounded-pill">Добавить автора</a>
+<!--        <a href="/docs#/Авторы%20книг/" class="btn btn-sm btn-warning mt-3 rounded-pill">Изменить автора</a>-->
+        <a href="/docs#/Авторы%20книг/author_delete_authors__author_id__delete" class="btn btn-sm btn-danger mt-3 rounded-pill">Удалить автора</a>
+        <h5 class="text-center my-1">Авторы</h5>
+        <div class="border border-2 rounded-2 p-1 my-2" style="height: 260px; overflow: auto">
+            <table class="table table-white">
+                <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">author_full_name</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for author in authors %}
+                <tr>
+                    <th scope="row">{{author.id}}</th>
+                    <td>{{author.author_full_name}}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <a href="/docs#/Жанры/add_genre_genres_post" class="btn btn-sm btn-success mt-3 rounded-pill">Добавить жанр</a>
+<!--        <a href="/docs#/Авторы%20книг/" class="btn btn-sm btn-warning mt-3 rounded-pill">Изменить жанр</a>-->
+        <a href="/docs#/Жанры/genre_delete_genres__author_id__delete" class="btn btn-sm btn-danger mt-3 rounded-pill">Удалить жанр</a>
+        <h5 class="text-center my-1">Жанры</h5>
+        <div class="border border-2 rounded-2 p-1 my-2" style="height: 260px; overflow: auto">
+            <table class="table table-white">
+                <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">genre_name</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for genre in genres %}
+                <tr>
+                    <th scope="row">{{genre.id}}</th>
+                    <td>{{genre.genre_name}}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <h5 class="text-center my-1">Рейтинг жанров по убыванию</h5>
+        <div class="border border-2 rounded-2 p-1 my-2" style="height: 260px; overflow: auto">
+            <table class="table table-white">
+                <thead>
+                <tr>
+                    <th scope="col">genre_name</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for mvp_genre in mvp_genres %}
+                <tr>
+                    <td>{{mvp_genre}}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

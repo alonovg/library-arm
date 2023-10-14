@@ -1,0 +1,135 @@
+[
+  {
+    "book_id": 1,
+    "customer_id": 1,
+    "transaction_date": "2022-01-03",
+    "expected_return_date": "2022-02-02",
+    "returned_date": null
+  },
+  {
+    "book_id": 2,
+    "customer_id": 2,
+    "transaction_date": "2022-02-10",
+    "expected_return_date": "2022-03-12",
+    "returned_date": null
+  },
+  {
+    "book_id": 15,
+    "customer_id": 2,
+    "transaction_date": "2022-03-10",
+    "expected_return_date": "2022-04-09",
+    "returned_date": null
+  },
+  {
+    "book_id": 3,
+    "customer_id": 2,
+    "transaction_date": "2022-03-15",
+    "expected_return_date": "2022-04-14",
+    "returned_date": "2022-04-10"
+  },
+  {
+    "book_id": 3,
+    "customer_id": 3,
+    "transaction_date": "2022-04-20",
+    "expected_return_date": "2022-05-20",
+    "returned_date": "2022-05-25"
+  },
+  {
+    "book_id": 14,
+    "customer_id": 2,
+    "transaction_date": "2022-04-29",
+    "expected_return_date": "2022-05-29",
+    "returned_date": "2022-06-27"
+  },
+  {
+    "book_id": 3,
+    "customer_id": 1,
+    "transaction_date": "2022-06-01",
+    "expected_return_date": "2022-06-30",
+    "returned_date": null
+  },
+  {
+    "book_id": 13,
+    "customer_id": 2,
+    "transaction_date": "2022-06-04",
+    "expected_return_date": "2022-07-04",
+    "returned_date": "2022-07-08"
+  },
+  {
+    "book_id": 13,
+    "customer_id": 3,
+    "transaction_date": "2022-07-08",
+    "expected_return_date": "2022-08-07",
+    "returned_date": null
+  },
+  {
+    "book_id": 4,
+    "customer_id": 1,
+    "transaction_date": "2022-06-21",
+    "expected_return_date": "2022-07-21",
+    "returned_date": "2022-08-12"
+  },
+  {
+    "book_id": 12,
+    "customer_id": 3,
+    "transaction_date": "2022-07-17",
+    "expected_return_date": "2022-08-16",
+    "returned_date": null
+  },
+  {
+    "book_id": 5,
+    "customer_id": 3,
+    "transaction_date": "2022-07-29",
+    "expected_return_date": "2022-08-28",
+    "returned_date": null
+  },
+  {
+    "book_id": 6,
+    "customer_id": 2,
+    "transaction_date": "2022-08-11",
+    "expected_return_date": "2022-09-10",
+    "returned_date": "2022-09-02"
+  },
+  {
+    "book_id": 6,
+    "customer_id": 3,
+    "transaction_date": "2022-09-02",
+    "expected_return_date": "2022-10-02",
+    "returned_date": null
+  },
+  {
+    "book_id": 11,
+    "customer_id": 3,
+    "transaction_date": "2022-09-08",
+    "expected_return_date": "2022-10-08",
+    "returned_date": "2022-10-02"
+  },
+  {
+    "book_id": 7,
+    "customer_id": 1,
+    "transaction_date": "2022-09-25",
+    "expected_return_date": "2022-10-25",
+    "returned_date": null
+  },
+  {
+    "book_id": 10,
+    "customer_id": 1,
+    "transaction_date": "2022-11-03",
+    "expected_return_date": "2022-12-03",
+    "returned_date": null
+  },
+  {
+    "book_id": 8,
+    "customer_id": 1,
+    "transaction_date": "2022-11-09",
+    "expected_return_date": "2022-12-09",
+    "returned_date": "2022-12-28"
+  },
+  {
+    "book_id": 9,
+    "customer_id": 3,
+    "transaction_date": "2022-12-21",
+    "expected_return_date": "2023-01-20",
+    "returned_date": "2023-02-16"
+  }
+]
