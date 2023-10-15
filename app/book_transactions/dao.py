@@ -33,7 +33,8 @@ class BookTransactionDAO(BaseDAO):
         condition_1 = (BookTransactions.expected_return_date < date.today()) & (BookTransactions.returned_date == None)
         # 2. returned_date больше, чем expected_return_date
         condition_2 = BookTransactions.returned_date > BookTransactions.expected_return_date
-        query = select(cls.model).filter(condition_1 | condition_2)
+        query = select(cls.model).filter(condition_1 | condition_2).options(
+            joinedload(cls.model.book), joinedload(cls.model.customer))
         async with async_session_maker() as session:
             results = await session.execute(query)
             return results.scalars().all()

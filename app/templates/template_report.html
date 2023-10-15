@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{page_title_text}}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='css/style.css')  }}">
+</head>
+<body>
+<h1>{{title_text}}</h1>
+<div class="border border-2 rounded-2 p-1 my-2" style="margin: 20px">
+    <table class="table table-white">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Читатель</th>
+            <th scope="col">Книга</th>
+            <th scope="col">Дата взятия книги</th>
+            <th scope="col">Планируемая дата возврата</th>
+            <th scope="col">Фактическая дата возврата</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for report_data in reports_data %}
+        <tr>
+            <th scope="row">{{report_data.id}}</th>
+            <td>{{report_data.customer.customer_full_name}} (id: {{report_data.customer_id}})</td>
+            <td>{{report_data.book.title}} (id: {{report_data.book_id}})</td>
+            <td>{{report_data.transaction_date}}</td>
+            <td>{{report_data.expected_return_date}}</td>
+            <td {% if report_data.returned_date is none %}style="background: #ff6969;" {% endif %}>
+                {{report_data.returned_date}}
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

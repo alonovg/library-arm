@@ -1,8 +1,10 @@
+import datetime
+
 from fastapi import APIRouter, Request, Depends
 from fastapi.templating import Jinja2Templates
 
 from app.authors.router import get_authors, get_mvp_author
-from app.book_transactions.router import get_transactions_joined
+from app.book_transactions.router import get_transactions_joined, get_report_about_transactions
 from app.books.router import get_mvp_book, get_books_joined
 from app.customers.router import get_customers, get_last_visit_date_func, get_mvp_genre_by_customer, \
     get_count_book_all_time, get_count_book_at_the_moment
@@ -55,4 +57,20 @@ async def get_main_page(
                                           "mvp_genres": mvp_genres,
                                           "customer_books_atm": customer_books_atm,
                                           "customer_mvp_genres": customer_mvp_genres
+                                      })
+
+
+@router.get("/report")
+async def get_report(
+        request: Request,
+        reports_data=Depends(get_report_about_transactions)
+):
+    page_title_text = f"Library report {datetime.date.today()}"
+    title_text = f"Отчет о читателях, не сдавших книгу вовремя, Дата: {datetime.date.today()}"
+    return templates.TemplateResponse(name="template_report.html",
+                                      context={
+                                          "request": request,
+                                          "page_title_text": page_title_text,
+                                          "title_text": title_text,
+                                          "reports_data": reports_data
                                       })
